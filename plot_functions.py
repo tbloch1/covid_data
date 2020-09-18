@@ -2,12 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
-try:
-  import mplcyberpunk
-except:
-  !pip install mplcyberpunk
-  clear_output()
-  import mplcyberpunk
+import mplcyberpunk
 
 
 def intplot(Country1,Country2,Normalise,cases,globalpop):
