@@ -55,7 +55,7 @@ def intplot(Country1,Country2,Normalise,cases,globalpop):
   plt.show()
 
   
-def localeplot(locale, coords, death, populations):
+def localeplot(locale, coords, death, populations, ukcounties):
   plt.style.use("cyberpunk")
   plt.figure(figsize=(8,4.5))
   gs = gridspec.GridSpec(1,3)
