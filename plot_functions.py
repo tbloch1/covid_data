@@ -83,7 +83,7 @@ def localeplot(Locale, coords, death, populations, ukcounties):
   popsize = populations[populations.Name == Locale]['All ages'].astype('float64').values[0]
   totsize = np.nanmax(populations['All ages'].astype('float64').values)-popsize
   
-  ax2.plot(death_area.index.unique(),death_day*100000/popsize,c='#FE53BB',label='{}: {}'.format(Locale,popsize))
+  ax2.plot(death_area.index.unique(),death_day*100000/popsize,c='#FE53BB',label='{} (Pop. {})'.format(Locale,popsize))
   ax2.plot(death_area.index.unique(),death_day_i*100000/totsize,c='#08F7FE',label='Rest of UK')
   
   ax2.legend()
