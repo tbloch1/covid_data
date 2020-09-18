@@ -2,6 +2,7 @@ import requests
 import numpy as np
 import pandas as pd
 import datetime as dt
+import xlrd
 from xlsx_to_csv import csv_from_excel
 
 
