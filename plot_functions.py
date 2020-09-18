@@ -16,7 +16,7 @@ def intplot(Country1,Country2,Normalise,cases,globalpop):
   density2 = globalpop[globalpop.Location == Country2].PopDensity.mean()
 
   plt.style.use("cyberpunk")
-  plt.figure(figsize=(12,8))
+  plt.figure(figsize=(12,8),dpi=300)
   ax1,ax2 = plt.subplot(221),plt.subplot(223)
   ax3,ax4 = plt.subplot(222), plt.subplot(224)
 
@@ -57,7 +57,7 @@ def intplot(Country1,Country2,Normalise,cases,globalpop):
   
 def localeplot(Locale, coords, death, populations, ukcounties):
   plt.style.use("cyberpunk")
-  plt.figure(figsize=(8,4.5))
+  plt.figure(figsize=(12,4.5),dpi=300)
   gs = gridspec.GridSpec(1,3)
   ax1 = plt.subplot(gs[0,0])
   ax2 = plt.subplot(gs[0,1:])
