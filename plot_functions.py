@@ -41,10 +41,10 @@ def intplot(Country1,Country2,Normalise,cases,globalpop):
   [i.set_ylim(0,max([max(caseno1),max(caseno2)])) for i in [ax1,ax3]]
   [i.set_ylim(0,max([max(deathno1),max(deathno2)])) for i in [ax2,ax4]]
 
-  ax1.set_title('{}: Daily Cases ({}) \nPop. Dens.: {} $km^{}$'.format(Country1,labels,int(density1),-2))
-  ax2.set_title('{}: Daily Deaths ({}) \nPop. Dens.: {} $km^{}$'.format(Country1,labels,int(density1),-2))
-  ax3.set_title('{}: Daily Cases ({}) \nPop. Dens.: {} $km^{}$'.format(Country2,labels,int(density2),-2))
-  ax4.set_title('{}: Daily Deaths ({}) \nPop. Dens.: {} $km^{}$'.format(Country2,labels,int(density2),-2))
+  ax1.set_title('{}: Daily Cases ({}) \nPop. Dens.: {} $km^{}$'.format(Country1,labels,int(density1),'{-2}'))
+  ax2.set_title('{}: Daily Deaths ({}) \nPop. Dens.: {} $km^{}$'.format(Country1,labels,int(density1),'{-2}'))
+  ax3.set_title('{}: Daily Cases ({}) \nPop. Dens.: {} $km^{}$'.format(Country2,labels,int(density2),'{-2}'))
+  ax4.set_title('{}: Daily Deaths ({}) \nPop. Dens.: {} $km^{}$'.format(Country2,labels,int(density2),'{-2}'))
 
   dateticks = [str(i)[:10] for i in ccases1.index[::15]]
   [i.set_xticks(ccases1.index[::15]) for i in [ax1,ax2,ax3,ax4]]
