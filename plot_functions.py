@@ -55,7 +55,7 @@ def intplot(Country1,Country2,Normalise,cases,globalpop):
   plt.show()
 
   
-def localeplot(locale, coords, death, populations, ukcounties):
+def localeplot(Locale, coords, death, populations, ukcounties):
   plt.style.use("cyberpunk")
   plt.figure(figsize=(8,4.5))
   gs = gridspec.GridSpec(1,3)
@@ -65,11 +65,11 @@ def localeplot(locale, coords, death, populations, ukcounties):
   ukcounties.plot(ax=ax1,color='w')
   ax1.scatter(coords.long.values, coords.lat.values,s=1,c='#08F7FE')
 
-  ax1.scatter(coords[coords['lad17nm'] == locale].long.values,
-              coords[coords['lad17nm'] == locale].lat.values,
+  ax1.scatter(coords[coords['lad17nm'] == Locale].long.values,
+              coords[coords['lad17nm'] == Locale].lat.values,
               s=6,c='#FE53BB')
   
-  areacode = coords[coords['lad17nm'] == locale]['lad17cd'].values[0]
+  areacode = coords[coords['lad17nm'] == Locale]['lad17cd'].values[0]
   
   death_area = death[(death['Cause of death'] == 'COVID 19') &
                      (death['Area code'] == areacode)]
@@ -80,10 +80,10 @@ def localeplot(locale, coords, death, populations, ukcounties):
   death_day_i = [death_area_i.loc[i]['Number of deaths'].astype('float32').sum() for i in death_area.index.unique()]
   death_day, death_day_i = np.array(death_day), np.array(death_day_i)
   
-  popsize = populations[populations.Name == locale]['All ages'].astype('float64').values[0]
+  popsize = populations[populations.Name == Locale]['All ages'].astype('float64').values[0]
   totsize = np.nanmax(populations['All ages'].astype('float64').values)-popsize
-  # print(len(death.index.unique()),len(death_day))
-  ax2.plot(death_area.index.unique(),death_day*100000/popsize,c='#FE53BB',label=locale+': {}'.format(popsize))
+  
+  ax2.plot(death_area.index.unique(),death_day*100000/popsize,c='#FE53BB',label='{}: {}'.format(Locale,popsize))
   ax2.plot(death_area.index.unique(),death_day_i*100000/totsize,c='#08F7FE',label='Rest of UK')
   
   ax2.legend()
