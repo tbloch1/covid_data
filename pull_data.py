@@ -10,7 +10,7 @@ def case_data():
   dailycases = requests.get('https://opendata.ecdc.europa.eu/covid19/casedistribution/csv')
 
   if dailycases.status_code == 200:
-      with open('dailycases.csv', 'wb') as f:
+      with open('data/dailycases.csv', 'wb') as f:
           f.write(dailycases.content)
           
 
@@ -18,13 +18,13 @@ def test_data():
   testingdata = requests.get('https://www.ecdc.europa.eu/sites/default/files/documents/weekly_testing_data_EUEEAUK_2020-09-16.xlsx')
 
   if testingdata.status_code == 200:
-      with open('testingdata.xlsx', 'wb') as f:
+      with open('data/testingdata.xlsx', 'wb') as f:
           f.write(testingdata.content)
 
-  wb = xlrd.open_workbook('testingdata.xlsx')
+  wb = xlrd.open_workbook('data/testingdata.xlsx')
   print(wb.sheet_names())
 
-  csv_from_excel('testingdata','Sheet1')
+  csv_from_excel('data/testingdata','Sheet1')
 
 
 def hospital_data():
@@ -37,15 +37,15 @@ def hospital_data():
 
     if hospitaldata.status_code == 200:
         ndays = np.nan
-        with open('hospitaldata.xlsx', 'wb') as f:
+        with open('data/hospitaldata.xlsx', 'wb') as f:
             f.write(hospitaldata.content)
     else:
       ndays = ndays+1
 
-  wb = xlrd.open_workbook('hospitaldata.xlsx')
+  wb = xlrd.open_workbook('data/hospitaldata.xlsx')
   print(wb.sheet_names())
 
-  csv_from_excel('hospitaldata','Sheet1')
+  csv_from_excel('data/hospitaldata','Sheet1')
   
 
 def death_data():
@@ -57,42 +57,42 @@ def death_data():
 
     if deathdata.status_code == 200:
         week = np.nan
-        with open('deathdata.xlsx', 'wb') as f:
+        with open('data/deathdata.xlsx', 'wb') as f:
             f.write(deathdata.content)
     else:
       print(week)
       week = week - 1
-  wb = xlrd.open_workbook('deathdata.xlsx')
+  wb = xlrd.open_workbook('data/deathdata.xlsx')
   print(wb.sheet_names())
 
-  csv_from_excel('deathdata','Registrations - All data')
+  csv_from_excel('data/deathdata','Registrations - All data')
   
   
 def uk_coord_data():
   coords = requests.get('http://geoportal1-ons.opendata.arcgis.com/datasets/fab4feab211c4899b602ecfbfbc420a3_2.csv?outSR={%22latestWkid%22:4326,%22wkid%22:4326}')
 
   if coords.status_code == 200:
-      with open('coords.csv', 'wb') as f:
+      with open('data/coords.csv', 'wb') as f:
           f.write(coords.content)
           
           
 def uk_population_data():
   populations = requests.get('https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fpopulationandmigration%2fpopulationestimates%2fdatasets%2fpopulationestimatesforukenglandandwalesscotlandandnorthernireland%2fmid2019april2020localauthoritydistrictcodes/ukmidyearestimates20192020ladcodes.xls')
 
-  with open('populations.xlsx', 'wb') as f:
+  with open('data/populations.xlsx', 'wb') as f:
     f.write(populations.content)
 
-  wb = xlrd.open_workbook('populations.xlsx')
+  wb = xlrd.open_workbook('data/populations.xlsx')
   print(wb.sheet_names())
 
-  csv_from_excel('populations','MYE2 - Persons')
+  csv_from_excel('data/populations','MYE2 - Persons')
 
 
 def uk_map_data():
   ukmap = requests.get('https://opendata.arcgis.com/datasets/cf8aa4a9e6ee494bbb243462ecb388ee_0.geojson')
 
   if ukmap.status_code == 200:
-      with open('ukmap.geojson', 'wb') as f:
+      with open('data/ukmap.geojson', 'wb') as f:
           f.write(ukmap.content)
           
           
@@ -100,5 +100,5 @@ def world_pop_data():
   globalpop = requests.get('https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/WPP2019_TotalPopulationBySex.csv')
 
   if globalpop.status_code == 200:
-      with open('globalpop.csv', 'wb') as f:
+      with open('data/globalpop.csv', 'wb') as f:
           f.write(globalpop.content)
