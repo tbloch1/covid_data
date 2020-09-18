@@ -75,7 +75,7 @@ def uk_coord_data():
           f.write(coords.content)
           
           
-def uk_populations():
+def uk_population_data():
   populations = requests.get('https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fpopulationandmigration%2fpopulationestimates%2fdatasets%2fpopulationestimatesforukenglandandwalesscotlandandnorthernireland%2fmid2019april2020localauthoritydistrictcodes/ukmidyearestimates20192020ladcodes.xls')
 
   with open('populations.xlsx', 'wb') as f:
