@@ -102,3 +102,11 @@ def world_pop_data():
   if globalpop.status_code == 200:
       with open('data/globalpop.csv', 'wb') as f:
           f.write(globalpop.content)
+
+
+def authority_to_county():
+  counties = requests.get('https://opendata.arcgis.com/datasets/79c993a10398400bb025a00849a43dc0_0.csv')
+  
+  if counties.status_code == 200:
+      with open('data/counties.csv', 'wb') as f:
+          f.write(counties.content)
