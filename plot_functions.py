@@ -55,14 +55,14 @@ def intplot(Country1,Country2,Normalise,cases,globalpop):
   plt.show()
 
   
-def localeplot(Locale, coords, death, populations, ukcounties):
+def localeplot(Locale, coords, death, populations, ukauthorities):
   plt.style.use("cyberpunk")
   plt.figure(figsize=(12,4.5),dpi=300)
   gs = gridspec.GridSpec(1,3)
   ax1 = plt.subplot(gs[0,0])
   ax2 = plt.subplot(gs[0,1:])
 
-  ukcounties.plot(ax=ax1,color='w')
+  ukauthorities.plot(ax=ax1,color='w')
   ax1.scatter(coords.long.values, coords.lat.values,s=1,c='#08F7FE')
 
   ax1.scatter(coords[coords['lad17nm'] == Locale].long.values,
