@@ -117,10 +117,10 @@ def countyplot(County, death, populations, ukauthorities):
   popsize = populations[populations.Name.isin(death[death.county==County]['Area name'].values)]['All ages'].astype('float32').sum()
   totsize = np.nanmax(populations['All ages'].astype('float64').values)-popsize
   
-  death_sum = death_covid2.groupby(['county','dates'],as_index=False).sum()
-  death_tot = death_covid2.groupby(['dates'],as_index=False).sum()['Number of deaths']
+  death_sum = death.groupby(['county','dates'],as_index=False).sum()
+  death_tot = death.groupby(['dates'],as_index=False).sum()['Number of deaths']
 
-  ax2.plot(death_sum[death_sum.county==County].dates,
+  ax2.plot(sum[death_sum.county==County].dates,
            death_sum[death_sum.county==County]['Number of deaths']*100000/popsize,
            c='#FE53BB',label='{} (Pop. {})'.format(County,popsize))
   ax2.plot(death_sum[death_sum.county==County].dates,
