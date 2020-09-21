@@ -49,7 +49,8 @@ def intplot(Country1,Country2,Normalise,cases,globalpop):
   dateticks = [str(i)[:10] for i in ccases1.index[::15]]
   [i.set_xticks(ccases1.index[::15]) for i in [ax1,ax2,ax3,ax4]]
   [i.set_xticklabels(dateticks,rotation=90) for i in [ax1,ax2,ax3,ax4]]
-
+  
+  plt.title('Comparing International Covid-19 \nCases and Deaths')
 
   plt.tight_layout()
   plt.show()
@@ -92,4 +93,46 @@ def localeplot(Locale, coords, death, populations, ukauthorities):
   ax2.set_ylabel("Death's per 100k")
   ax2.set_xticks(np.sort(death_area.index.unique())[::5])
   ax2.set_xticklabels([str(i)[:10] for i in np.sort(death_area.index.unique())[::5]],rotation=90)
+  plt.title('Comparing Covid-19 Deaths Between \nLocal Authorities (Voting Areas)')
+  
+  plt.plot()
+  
+  
+def countyplot(County, death, populations, ukauthorities):
+  plt.style.use("cyberpunk")
+  plt.figure(figsize=(12,4.5),dpi=300)
+  gs = gridspec.GridSpec(1,3)
+  ax1 = plt.subplot(gs[0,0])
+  ax2 = plt.subplot(gs[0,1:])
+
+  ukauthorities.plot(ax=ax1,color='w')
+  countycoord = death.groupby(['county'],as_index=False).mean()
+  
+  ax1.scatter(countycoord.lon, countycoord.lat,s=1,c='#08F7FE')
+
+  ax1.scatter(countycoord[countycoord.county == County].lon,
+              countycoord[countycoord.county == County].lat,
+              s=6,c='#FE53BB')
+
+  popsize = populations[populations.Name.isin(death[death.county==County]['Area name'].values)]['All ages'].astype('float32').sum()
+  totsize = np.nanmax(populations['All ages'].astype('float64').values)-popsize
+  
+  death_sum = death_covid2.groupby(['county','dates'],as_index=False).sum()
+  death_tot = death_covid2.groupby(['dates'],as_index=False).sum()['Number of deaths']
+
+  ax2.plot(death_sum[death_sum.county==County].dates,
+           death_sum[death_sum.county==County]['Number of deaths']*100000/popsize,
+           c='#FE53BB',label='{} (Pop. {})'.format(County,popsize))
+  ax2.plot(death_sum[death_sum.county==County].dates,
+           (death_tot - death_sum[death_sum.county==County]['Number of deaths'].values)*100000/totsize,
+           c='#08F7FE',label='Rest of UK')
+  
+  ax2.legend()
+  ax1.set_xticklabels([])
+  ax1.set_yticklabels([])
+  ax2.set_ylabel("Death's per 100k")
+  ax2.set_xticks(death_sum[death_sum.county==County].dates[::5])
+  ax2.set_xticklabels([str(i)[:10] for i in death_sum[death_sum.county==County].dates[::5]],rotation=90)
+  
+  plt.title('Comparing Covid-19 Deaths Between Counties')
   plt.plot()
