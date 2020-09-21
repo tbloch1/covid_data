@@ -88,7 +88,7 @@ def localeplot(Locale, coords, death, populations, ukauthorities):
   ax2.legend()
   ax1.set_xticklabels([])
   ax1.set_yticklabels([])
-  ax2.set_ylabel("Death's per 100k")
+  ax2.set_ylabel("Deaths per 100k")
   ax2.set_xticks(np.sort(death_area.index.unique())[::5])
   ax2.set_xticklabels([str(i)[:10] for i in np.sort(death_area.index.unique())[::5]],rotation=90)
   plt.title('Comparing Covid-19 Deaths Between \nLocal Authorities (Voting Areas)')
@@ -128,7 +128,7 @@ def countyplot(County, death, populations, ukauthorities):
   ax2.legend()
   ax1.set_xticklabels([])
   ax1.set_yticklabels([])
-  ax2.set_ylabel("Death's per 100k")
+  ax2.set_ylabel("Deaths per 100k")
   ax2.set_xticks(death_sum[death_sum.county==County].dates[::5])
   ax2.set_xticklabels([str(i)[:10] for i in death_sum[death_sum.county==County].dates[::5]],rotation=90)
 
