@@ -105,7 +105,7 @@ def world_pop_data():
 
 
 def authority_to_county():
-  counties = requests.get('https://opendata.arcgis.com/datasets/79c993a10398400bb025a00849a43dc0_0.csv')
+  counties = requests.get('https://opendata.arcgis.com/datasets/0fa948d8a59d4ba6a46dce9aa32f3513_0.csv')
   
   if counties.status_code == 200:
       with open('data/counties.csv', 'wb') as f:
