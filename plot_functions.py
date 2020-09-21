@@ -120,7 +120,7 @@ def countyplot(County, death, populations, ukauthorities):
   death_sum = death.groupby(['county','dates'],as_index=False).sum()
   death_tot = death.groupby(['dates'],as_index=False).sum()['Number of deaths']
 
-  ax2.plot(sum[death_sum.county==County].dates,
+  ax2.plot(death_sum[death_sum.county==County].dates,
            death_sum[death_sum.county==County]['Number of deaths']*100000/popsize,
            c='#FE53BB',label='{} (Pop. {})'.format(County,popsize))
   ax2.plot(death_sum[death_sum.county==County].dates,
@@ -133,6 +133,6 @@ def countyplot(County, death, populations, ukauthorities):
   ax2.set_ylabel("Death's per 100k")
   ax2.set_xticks(death_sum[death_sum.county==County].dates[::5])
   ax2.set_xticklabels([str(i)[:10] for i in death_sum[death_sum.county==County].dates[::5]],rotation=90)
-  
+
   plt.title('Comparing Covid-19 Deaths Between Counties')
   plt.plot()
