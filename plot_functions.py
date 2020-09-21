@@ -49,8 +49,6 @@ def intplot(Country1,Country2,Normalise,cases,globalpop):
   dateticks = [str(i)[:10] for i in ccases1.index[::20]]
   [i.set_xticks(ccases1.index[::20]) for i in [ax1,ax2,ax3,ax4]]
   [i.set_xticklabels(dateticks,rotation=90) for i in [ax1,ax2,ax3,ax4]]
-  
-  plt.title('Comparing International Covid-19 \nCases and Deaths')
 
   plt.tight_layout()
   plt.show()
