@@ -95,7 +95,7 @@ def uk_population_data():
 
 
 def uk_map_data():
-  ukmap = requests.get('https://opendata.arcgis.com/datasets/cf8aa4a9e6ee494bbb243462ecb388ee_0.geojson',
+  ukmap = requests.get('http://geoportal1-ons.opendata.arcgis.com/datasets/fab4feab211c4899b602ecfbfbc420a3_2.geojson?outSR={%22latestWkid%22:4326,%22wkid%22:4326}',
                        headers={"User-Agent":"Mozilla/5.0"})
 
   if ukmap.status_code == 200:
